@@ -31,7 +31,8 @@
 						"linkedServiceName": {
 							"referenceName": "AzureBlobStorage1",
 							"type": "LinkedServiceReference"
-						}
+						},
+						"path": "staging/customers"
 					},
 					"translator": {
 						"type": "TabularTranslator",
