@@ -1,0 +1,108 @@
+{
+	"name": "PL_CopyProducts_SQL_to_Snowflake",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_Products_FullLoad",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "product_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PRODUCT_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "name",
+									"type": "String"
+								},
+								"sink": {
+									"name": "NAME",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "category",
+									"type": "String"
+								},
+								"sink": {
+									"name": "CATEGORY",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "price",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "PRICE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "created_at",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATED_AT",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "Products",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable2",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	}
+}

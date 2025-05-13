@@ -1,0 +1,35 @@
+{
+	"name": "Customers",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Snowflake1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [
+			{
+				"name": "CUSTOMER_ID",
+				"type": "NUMBER",
+				"precision": 38,
+				"scale": 0
+			},
+			{
+				"name": "NAME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "EMAIL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CREATED_AT",
+				"type": "TIMESTAMP_NTZ"
+			}
+		],
+		"typeProperties": {
+			"schema": "AZURE_SQL",
+			"table": "CUSTOMERS"
+		}
+	}
+}
