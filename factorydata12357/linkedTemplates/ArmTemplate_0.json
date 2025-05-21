@@ -807,6 +807,13 @@
 							"type": "PipelineReference"
 						},
 						"parameters": {}
+					},
+					{
+						"pipelineReference": {
+							"referenceName": "PL_CopyProducts_SQL_to_Snowflake",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
 					}
 				],
 				"type": "ScheduleTrigger",
@@ -825,7 +832,8 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_CopyCustomers_SQL_to_Snowflake')]"
+				"[concat(variables('factoryId'), '/pipelines/PL_CopyCustomers_SQL_to_Snowflake')]",
+				"[concat(variables('factoryId'), '/pipelines/PL_CopyProducts_SQL_to_Snowflake')]"
 			]
 		},
 		{
