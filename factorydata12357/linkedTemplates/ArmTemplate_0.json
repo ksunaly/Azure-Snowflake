@@ -794,6 +794,41 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trigger1')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "PL_CopyCustomers_SQL_to_Snowflake",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2025-05-21T22:52:00",
+						"timeZone": "Pacific Standard Time",
+						"schedule": {
+							"weekDays": [
+								"Monday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/PL_CopyCustomers_SQL_to_Snowflake')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/trigger_orders')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
