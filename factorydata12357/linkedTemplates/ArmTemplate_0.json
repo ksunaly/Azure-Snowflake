@@ -835,41 +835,6 @@
 				"[concat(variables('factoryId'), '/pipelines/PL_CopyCustomers_SQL_to_Snowflake')]",
 				"[concat(variables('factoryId'), '/pipelines/PL_CopyProducts_SQL_to_Snowflake')]"
 			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trigger_orders')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Stopped",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "PL_CopyOrders_SQL_to_Snowflake",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "ScheduleTrigger",
-				"typeProperties": {
-					"recurrence": {
-						"frequency": "Week",
-						"interval": 1,
-						"startTime": "2025-05-22T14:21:00",
-						"timeZone": "Pacific Standard Time",
-						"schedule": {
-							"weekDays": [
-								"Thursday"
-							]
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_CopyOrders_SQL_to_Snowflake')]"
-			]
 		}
 	]
 }
