@@ -16,11 +16,11 @@
 			"recurrence": {
 				"frequency": "Week",
 				"interval": 1,
-				"startTime": "2025-05-21T22:45:00",
+				"startTime": "2025-05-22T14:21:00",
 				"timeZone": "Pacific Standard Time",
 				"schedule": {
 					"weekDays": [
-						"Friday"
+						"Thursday"
 					]
 				}
 			}
