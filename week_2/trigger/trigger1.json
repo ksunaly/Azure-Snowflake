@@ -15,6 +15,12 @@
 					"referenceName": "PL_CopyProducts_SQL_to_Snowflake",
 					"type": "PipelineReference"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "PL_CopyOrders_SQL_to_Snowflake",
+					"type": "PipelineReference"
+				}
 			}
 		],
 		"type": "ScheduleTrigger",
