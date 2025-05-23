@@ -1,0 +1,9 @@
+{
+	"name": "factorydata12357",
+	"location": "westus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "28b4e970-3e8a-4f2f-a072-acc162a431ce",
+		"tenantId": "dced3a5e-b126-4e4b-903c-3ede9e111f5d"
+	}
+}

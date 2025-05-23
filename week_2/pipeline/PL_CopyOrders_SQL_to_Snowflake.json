@@ -1,0 +1,131 @@
+{
+	"name": "PL_CopyOrders_SQL_to_Snowflake",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_Orders_FullLoad",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "SnowflakeV2Sink",
+						"importSettings": {
+							"type": "SnowflakeImportCopyCommand"
+						}
+					},
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": "staging/orders"
+					},
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "order_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ORDER_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "customer_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "CUSTOMER_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "product_id",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "PRODUCT_ID",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "quantity",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "QUANTITY",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "total_price",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "TOTAL_PRICE",
+									"type": "Int64"
+								}
+							},
+							{
+								"source": {
+									"name": "created_at",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "CREATED_AT",
+									"type": "DateTime"
+								}
+							},
+							{
+								"source": {
+									"name": "updated_at",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "UPDATED_AT",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SnowflakeTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-05-11T16:16:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
