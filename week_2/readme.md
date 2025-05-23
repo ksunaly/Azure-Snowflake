@@ -233,33 +233,56 @@ VALUES (
 
 ### 5. Schedule pipeline
 
-Navigate to Data Factory → Monitoring → Diagnostic Settings.
-Create a new Diagnostic Setting and send logs to Azure Monitor or Log Analytics.
-Ensure you enable PipelineRuns and ActivityRuns logs.
+1. Go to Azure Data Studio
+2. Click on Author
+3. Under pipelines select 'PL_CopyOrders_SQL_to_Snowflake' pipeline that was created before
+4. Click on Add Trigger - New/Edit ![image](https://github.com/user-attachments/assets/58facdb2-dce6-4724-a371-cc9bd30ea941)
+5. Choose nw trigger in pop out window
+6. Select necessary setting, including when you want to start triggering pipelines, how often ![image](https://github.com/user-attachments/assets/fe3cabd5-2e68-4b13-8223-de784ecaa288)
+7. Save
+8. Publish
 
-It will start to send logs into Log Analytics, and we can query logs and create our own rules and dashboards for monitoring of pipelines.
+### 6. Add Alerts on Activity Failure
 
-Create an Alert Rule
+1. Go to Azure Portal → open your Data Factory instance.
+2. In the left menu, under Monitoring, click Diagnostic settings.
+3. Click + Add diagnostic setting.
+4. Set the name, e.g., adf-logs.
+5. Under Logs, check:
+✅ PipelineRuns
+✅ ActivityRuns
+6. Under Destination, choose:
+✅ Send to Log Analytics
+7. Choose a Log Analytics workspace (create one if you don’t have it).
+8. Click Save.
+   ![image](https://github.com/user-attachments/assets/d8c1163a-9db8-464d-8893-384e18c9ace6)
 
-Go to Azure Portal → Monitor → Alerts → + Create Alert Rule.
+→ ✅ Now your ADF will start sending logs to Log Analytics.
 
-Resource: Choose your Data Factory instance.
+## 🚨 7. Create Alert for Pipeline Failures
 
-![image](https://github.com/user-attachments/assets/5f2b6a9e-500a-4b0a-bcd6-013cadd69c53)
+- Go to **Azure Portal → Monitor → Alerts → + New alert rule**.
+- **Scope**: Select your Azure Data Factory instance.
+- **Condition**:
+  - **Signal**: `Failed pipeline runs`
+  - **Operator**: Greater than
+  - **Threshold**: 0
+  - **Aggregation**: Total
+  - **Frequency**: Every 5 minutes
+- **Action Group**:
+  - Create or select one with **email notifications** (e.g., `EmailADFAlerts`)
+- **Severity**: Choose `Sev 2` or appropriate level.
+- Click **Create** to finalize the alert rule.
 
-Condition:
+ ![image](https://github.com/user-attachments/assets/d09025ae-bc67-4f19-945c-133139523c80)
 
-Select Signal Type → Metric or Log.
-Example: Use metric Pipeline failed runs or query where PipelineRunStatus == 'Failed'.
-Action Group:
+ ![image](https://github.com/user-attachments/assets/49734df9-192d-452e-80a4-ebc1720f79ef)
 
-Create or select an existing Action Group.
-Add notification channels (Email, SMS, Webhook, etc.).
-You can configure alerts per pipeline.
 
-Assign Severity levels (Sev 0 - Sev 4).
 
-Integrate with ITSM systems (PagerDuty, ServiceNow, Slack) using Webhooks.
+
+
+
 
 
 
