@@ -10,6 +10,11 @@
 
 ---
 
+### Architecture
+
+![image](https://github.com/user-attachments/assets/6ff78d48-8c05-41fe-a4b7-00353ad9b4a2)
+
+
 ### 1. Snowflake Table Creation
 
 For each source table (`orders`, `customers`, `products`), create:
