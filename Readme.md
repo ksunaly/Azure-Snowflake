@@ -9,6 +9,10 @@
 
 ---
 
+### Architecture
+
+![image](https://github.com/user-attachments/assets/893e11e8-d7e2-472a-b8b2-14c85315cdb3)
+
 
 ### 1. 🔧 Azure Environment Setup
 
